@@ -7,7 +7,7 @@
   <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function Btn(props) {
+    function Btn({ text, big }) {
       return (
         <button
           style={{
@@ -16,10 +16,10 @@
             padding: "10px 20px",
             border: 0,
             borderRadius: 10,
-            fontSize: props.big ? 20 : 15,
+            fontSize: big ? 20 : 15,
           }}
         >
-          {props.text}
+          {text}
         </button>
       );
     }
