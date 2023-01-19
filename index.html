@@ -7,93 +7,27 @@
   <script crossorigin src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   <script type="text/babel">
-    function TimeConverter() {
-      const [amount, setAmount] = React.useState(0);
-      const [flipped, setFlipped] = React.useState(false);
-      const onChange = (event) => setAmount(event.target.value);
-      const reset = () => setAmount("");
-      const flip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
+    function Btn({ text, big }) {
       return (
-        <div>
-          <div>
-            <label htmlFor="minutes">Minutes</label>
-            <input
-              id="minutes"
-              placeholder="minutes"
-              value={flipped ? amount * 60 : amount}
-              onChange={onChange}
-              disabled={flipped}
-            />
-          </div>
-          <div>
-            <label htmlFor="hours">Hours</label>
-            <input
-              id="hours"
-              placeholder="hours"
-              value={flipped ? amount : Math.round(amount / 60)}
-              onChange={onChange}
-              disabled={!flipped}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={flip}>Flip</button>
-        </div>
-      );
-    }
-    function LengthConverter() {
-      const unit = 0.621371;
-      const [amount, setAmount] = React.useState("");
-      const [flipped, setFlipped] = React.useState(false);
-      const reset = () => setAmount("");
-      const onChange = (event) => setAmount(event.target.value);
-      const flip = () => {
-        reset();
-        setFlipped((current) => !current);
-      };
-      return (
-        <div>
-          <div>
-            <input
-              placeholder="Km"
-              value={flipped ? Math.round(amount / unit) : amount}
-              onChange={onChange}
-              disabled={flipped}
-            />
-          </div>
-          <div>
-            <input
-              placeholder="Miles"
-              value={flipped ? amount : amount * unit}
-              onChange={onChange}
-              disabled={!flipped}
-            />
-          </div>
-          <button onClick={reset}>Reset</button>
-          <button onClick={flip}>Flip</button>
-        </div>
+        <button
+          style={{
+            backgroundColor: "blue",
+            color: "white",
+            padding: "10px 20px",
+            border: 0,
+            borderRadius: 10,
+            fontSize: big ? 20 : 15,
+          }}
+        >
+          {text}
+        </button>
       );
     }
     function App() {
-      const [index, setIndex] = React.useState("");
-      const onSelect = (event) => {
-        setIndex(event.target.value);
-        console.log(event.target.value);
-      };
       return (
         <div>
-          <h1>Super Converter</h1>
-          <select value={index} onChange={onSelect}>
-            <option value="">--Select Converter--</option>
-            <option value="time">Minutes & Hours</option>
-            <option value="length">Km & Miles</option>
-          </select>
-          <hr />
-          {index === "" ? <h1>Welcome</h1> : null}
-          {index === "time" ? <TimeConverter /> : null}
-          {index === "length" ? <LengthConverter /> : null}
+          <Btn text="Save" big={true} />
+          <Btn text="Change" big={false} />
         </div>
       );
     }
